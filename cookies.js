@@ -1,8 +1,8 @@
-function setCookie(cname, cvalue, exdays) {
+ifunction setCookie(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
   let expires = "expires=" + d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;SameSite=Lax";
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;same_site=Lax";
   console.log(`Setting cookie: ${cname}=${cvalue}; ${expires}; path=/`);
 }
 
