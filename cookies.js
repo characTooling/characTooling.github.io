@@ -1,9 +1,11 @@
-ifunction setCookie(cname, cvalue, exdays) {
+function setCookie(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
   let expires = "expires=" + d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;same_site=Lax";
-  console.log(`Setting cookie: ${cname}=${cvalue}; ${expires}; path=/`);
+  let secure = location.protocol === 'https:' ? 'Secure;' : '';
+  let sameSite = 'SameSite=Lax;';
+  document.cookie = `${cname}=${cvalue};${expires};path=/;${secure}${sameSite}`;
+  console.log(`Setting cookie: ${cname}=${cvalue}; ${expires}; path=/; ${secure} ${sameSite}`);
 }
 
 function getCookie(cname) {
@@ -22,6 +24,7 @@ function getCookie(cname) {
 }
 
 function checkCookie() {
+  console.log("Checking cookies...");
   let user = getCookie("username");
   if (user) {
     let time = new Date(parseInt(user));
